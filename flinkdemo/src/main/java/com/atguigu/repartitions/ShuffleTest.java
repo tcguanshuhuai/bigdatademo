@@ -14,7 +14,7 @@ StreamExecutionEnvironment.getExecutionEnvironment();
  
   // 读取数据源，并行度为1 
         DataStreamSource<Event> stream = env.addSource(new ClickSource());
-        stream.shuffle()
+        stream.shuffle();
  
   // 经洗牌后打印输出，并行度为4 
         stream.shuffle().print("shuffle").setParallelism(4); 
