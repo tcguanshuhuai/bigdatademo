@@ -1,11 +1,11 @@
 package com.atguigu.watermarktest;
 
 import com.atguigu.source.Event;
-import org.apache.flink.api.common.eventtime.*;
+import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
-import org.apache.flink.streaming.api.windowing.assigners.SlidingEventTimeWindows;
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
@@ -14,11 +14,9 @@ import org.apache.flink.util.Collector;
 import java.time.Duration;
 
 
-
-public class WatermarkTest {
+public class WatermarkTest2 {
     public static void main(String[] args) throws Exception {
-            StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        env.getConfig().setAutoWatermarkInterval(1000);
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
         // 将数据源改为socket文本流，并转换成Event类型
         env.socketTextStream("localhost", 7777)
@@ -31,7 +29,7 @@ public class WatermarkTest {
                 })
                 // 插入水位线的逻辑
                 .assignTimestampsAndWatermarks(
-                        // 针对乱序流插入水位线，延迟时间设置为0s
+                        // 针对乱序流插入水位线，延迟时间设置为5s
                         WatermarkStrategy.<Event>forBoundedOutOfOrderness(Duration.ofSeconds(5))
                                 .withTimestampAssigner(new SerializableTimestampAssigner<Event>() {
                                     // 抽取事件时间的逻辑,从record抽取事件时间

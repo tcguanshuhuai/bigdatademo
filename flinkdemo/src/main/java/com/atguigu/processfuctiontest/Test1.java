@@ -24,7 +24,6 @@ public class Test1 {
           }
       }).print();
 
-      stream.windowAll()
 
       env.execute();
 

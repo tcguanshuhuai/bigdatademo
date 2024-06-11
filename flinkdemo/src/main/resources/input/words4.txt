@@ -1,0 +1,9 @@
+python,1000,1
+java,2000,2
+python,3000,3
+java,4000,5
+python,4000,2
+java,7000,6
+java,8000,17
+java,11000,7
+java,15000,11
