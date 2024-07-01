@@ -3,6 +3,7 @@ package com.atguigu.wc;
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.java.operators.DataSource;
 import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
@@ -18,7 +19,9 @@ public class BoundedStreamWordCount {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 // 2. 读取文件
         URL resource = BatchWordCount.class.getClassLoader().getResource("input/words.txt");
-        DataStreamSource<String> lineDSS = env.readTextFile(resource.getFile());
+        DataStream<String> lineDSS = env.readTextFile(resource.getFile());
+        DataStream<String> map = lineDSS.map(x -> x);
+
         // 3. 转换数据格式 
         SingleOutputStreamOperator<Tuple2<String, Long>> wordAndOne = lineDSS.flatMap((String line, Collector<String> words) -> {
             Arrays.stream(line.split(" ")).forEach(words::collect);
