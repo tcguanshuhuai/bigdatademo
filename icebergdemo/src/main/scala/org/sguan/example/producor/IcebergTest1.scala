@@ -17,6 +17,8 @@ object IcebergTest1 {
 
 
     val sc = ss.sparkContext
+    val cc = ss.sparkContext
+
 
     sc.hadoopConfiguration.set("fs.defaultFS", "hdfs://ns")
     sc.hadoopConfiguration.set("dfs.nameservices", "ns")

@@ -1,0 +1,12 @@
+" ./home",Mary
+" ./cart",Alice
+" ./prod?id=100",Bob
+" ./cart",Bob
+" ./home",Bob
+" ./home",Mary
+" ./home",Bob
+" ./home",Bob
+" ./prod?id=10",Bob
+" ./home",Mary
+" ./cart",Bob
+" ./cart",Bob
