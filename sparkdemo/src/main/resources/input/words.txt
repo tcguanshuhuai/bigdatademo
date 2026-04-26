@@ -1,0 +1,4 @@
+hello spark
+hello big data
+spark makes data processing simple
+java spark demo

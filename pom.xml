@@ -12,9 +12,7 @@
         <module>icebergdemo</module>
         <module>kafkademo</module>
         <module>flinkdemo</module>
-        <module>sparkmlbdemo</module>
         <module>flinksqldemo</module>
-        <module>sparksqldemo</module>
         <module>sparkdemo</module>
     </modules>
 
