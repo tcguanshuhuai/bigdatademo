@@ -17,11 +17,11 @@
     </modules>
 
     <properties>
-        <flink.version>1.19.0</flink.version>
+        <flink.version>1.20.3</flink.version>
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <maven.version>3.8.8</maven.version>
+        <maven.version>3.8.6</maven.version>
         <exec-maven-plugin.version>3.1.0</exec-maven-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spark.version>3.5.1</spark.version>
