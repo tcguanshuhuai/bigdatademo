@@ -6,18 +6,22 @@ import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.KeyedStream; 
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator; 
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment; 
+import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.util.Collector; 
  
 import java.util.Arrays; 
  
 public class StreamWordCount  {
     public static void main(String[] args) throws Exception { 
+        ParameterTool params = ParameterTool.fromArgs(args);
+        String host = params.get("host", "node01");
+        int port = params.getInt("port", 7777);
+
         // 1. 创建流式执行环境 
         StreamExecutionEnvironment env = 
 StreamExecutionEnvironment.getExecutionEnvironment();
         // 2. 读取文本流
-        DataStreamSource<String> lineDSS = env.socketTextStream("node01",
-7777); 
+        DataStreamSource<String> lineDSS = env.socketTextStream(host, port); 
         // 3. 转换数据格式 
         SingleOutputStreamOperator<Tuple2<String, Long>> wordAndOne = lineDSS 
                 .flatMap((String line, Collector<String> words) -> { 

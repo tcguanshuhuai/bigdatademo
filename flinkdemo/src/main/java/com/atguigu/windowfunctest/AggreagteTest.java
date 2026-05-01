@@ -63,7 +63,8 @@ public class AggreagteTest {
 
                     @Override
                     public Tuple3<String, Integer, Integer> merge(Tuple3<String, Integer, Integer> a, Tuple3<String, Integer, Integer> b) {
-                        return Tuple3.of(a.f0, a.f1 + b.f1, a.f2 + b.f2);
+//                        return Tuple3.of(a.f0, a.f1 + b.f1, a.f2 + b.f2);
+                        return null;
                     }
                 })
                 .print();
